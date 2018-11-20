@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--系统自定义颜色-->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--自定义颜色-->
+    <color name="colorMain">#0DBDB3</color>
+    <color name="colorMainLow">#1C7E79</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorNormalLow">#5C5C5C</color>
+    <color name="colorNormalRoute">#969696</color>
+    <color name="colorWhile">#FFFFFF</color>
+    <color name="colorGray">#D0D0D0</color>
+    <color name="colorgray">#7FADADAD</color>
+    <color name="colorBlackLow">#313335</color>
+    <color name="colorBlack">#000000</color>
+</resources>

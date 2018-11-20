@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/main_top_navigation_consult"
+        android:icon="@drawable/ic_local_hospital_black_24dp"
+        android:title="@string/string_consult"
+        app:showAsAction="always"/>
+    <item android:id="@+id/main_top_navigation_check"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/string_check"
+        app:showAsAction="always"/>
+    <item android:id="@+id/main_top_navigation_nav"
+        android:icon="@drawable/ic_place_black_24dp"
+        android:title="@string/string_nav"
+        app:showAsAction="always"/>
+</menu>
