@@ -17,7 +17,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:theme="@style/AppTheme_ToolBar"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            >
             <!--<android.support.design.widget.NavigationView
                 android:id="@+id/main_top_navigation"
                 android:layout_width="0dp"
@@ -25,7 +26,7 @@
                 android:layout_marginEnd="0dp"
                 android:layout_marginStart="0dp"
                 app:menu="@menu/activity_main_drawer"/>-->
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <Button
@@ -45,8 +46,9 @@
                     android:layout_marginRight="20dp"
                     android:layout_gravity="right|center_vertical"
                     android:background="@drawable/main_toolbar_navigation_nav_selector"/>
-            </LinearLayout>
+            </LinearLayout>-->
         </android.support.v7.widget.Toolbar>
+
 
     </android.support.design.widget.AppBarLayout>
 

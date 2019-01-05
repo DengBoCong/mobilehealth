@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,18 +17,27 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.power.mobile_health.Fragment.MainTabFragment;
 import com.example.power.mobile_health.R;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private ArrayList<View> mainViewList;
+    private ViewPager tlViewPager;
+    private PagerAdapter tlPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*针对标题栏进行相关的操作*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*设置悬浮按钮*/
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +47,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        /*对侧边栏的开闭与标题栏的盒子按钮进行关联*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -43,6 +56,16 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        /*往FrameLayout中添加Fragment*/
+        if(findViewById(R.id.fg_container) != null){
+            if(savedInstanceState != null){
+                return;
+            }
+            MainTabFragment mainTabFragment = new MainTabFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fg_container, mainTabFragment).commit();
+        }
     }
 
     @Override
@@ -107,5 +130,15 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, LoginMainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void loadMainViewPager(){
+        /*ViewPager mainViewPager = (ViewPager)findViewById(R.id.vp_main_container);*/
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View viewConsult = layoutInflater.inflate(R.layout.main_consult_main, null);
+        View viewCheck = layoutInflater.inflate(R.layout.main_check_main, null);
+        View viewNav = layoutInflater.inflate(R.layout.main_nav_main, null);
+
+
     }
 }
