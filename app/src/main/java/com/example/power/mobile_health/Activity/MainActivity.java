@@ -2,10 +2,18 @@ package com.example.power.mobile_health.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,16 +25,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.power.mobile_health.Adapter.MainTabAdapter;
+import com.example.power.mobile_health.Adapter.RecyclerViewAdapter;
 import com.example.power.mobile_health.Fragment.MainTabFragment;
+import com.example.power.mobile_health.Fragment.TextFragment;
+import com.example.power.mobile_health.Listener.AppBarStateChangeListener;
 import com.example.power.mobile_health.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private ArrayList<View> mainViewList;
     private ViewPager tlViewPager;
     private PagerAdapter tlPagerAdapter;
+    private TabLayout tabLayout;
+    private FragmentPagerAdapter fragmentPagerAdapter;
+
+    private List<Fragment> listFragment;
+    private List<String> listTitle;
+
+    private TextFragment hotRecommendFragment;
+    private TextFragment hotCollectionFragment;
+    private TextFragment hotMonthFragment;
+    private TextFragment hotToday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +80,50 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         /*往FrameLayout中添加Fragment*/
-        if(findViewById(R.id.fg_container) != null){
+        /*if(findViewById(R.id.fg_container) != null){
             if(savedInstanceState != null){
                 return;
             }
             MainTabFragment mainTabFragment = new MainTabFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fg_container, mainTabFragment).commit();
+        }*/
+
+        initTabPageLayout();
+
+        AppBarLayout appBarLayout = (AppBarLayout)findViewById(R.id.main_appBarLayout);
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state) {
+                Log.d("STATE", state.name());
+                if( state == State.EXPANDED ) {
+
+                    //展开状态
+
+                }else if(state == State.COLLAPSED){
+                    //折叠状态
+
+                }else {
+
+                    //中间状态
+
+                }
+            }
+        });
+        /*List<String> mDatas;
+        RecyclerViewAdapter recyclerViewAdapter;
+        mDatas = new ArrayList<String>();
+        for ( int i=0; i < 40; i++) {
+            mDatas.add( "item"+i);
         }
+        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, mDatas);
+
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.main_recyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());*/
     }
 
     @Override
@@ -140,5 +198,38 @@ public class MainActivity extends AppCompatActivity
         View viewNav = layoutInflater.inflate(R.layout.main_nav_main, null);
 
 
+    }
+
+    public void initTabPageLayout(){
+        tlViewPager = (ViewPager)findViewById(R.id.vp_mainActivity);
+        tabLayout = (TabLayout)findViewById(R.id.tl_mainActivity);
+
+        //初始化各fragment
+        hotRecommendFragment = new TextFragment();
+        hotCollectionFragment = new TextFragment();
+        hotMonthFragment = new TextFragment();
+        hotToday = new TextFragment();
+
+        listFragment = new ArrayList<>();
+        listFragment.add(hotRecommendFragment);
+        listFragment.add(hotCollectionFragment);
+        listFragment.add(hotMonthFragment);
+        listFragment.add(hotToday);
+
+        listTitle = new ArrayList<>();
+        listTitle.add("热门推荐");
+        listTitle.add("热门收藏");
+        listTitle.add("本月热榜");
+        listTitle.add("今日热榜");
+
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        tabLayout.addTab(tabLayout.newTab().setText(listTitle.get(0)));
+        tabLayout.addTab(tabLayout.newTab().setText(listTitle.get(1)));
+        tabLayout.addTab(tabLayout.newTab().setText(listTitle.get(2)));
+        tabLayout.addTab(tabLayout.newTab().setText(listTitle.get(3)));
+
+        fragmentPagerAdapter = new MainTabAdapter(this.getSupportFragmentManager(), listFragment, listTitle);
+        tlViewPager.setAdapter(fragmentPagerAdapter);
+        tabLayout.setupWithViewPager(tlViewPager);
     }
 }

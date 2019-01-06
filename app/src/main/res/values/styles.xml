@@ -30,4 +30,16 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!--顶部标题字体Appearance-->
+    <style name="TextAppearance_ToolBar_Start">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/colorNormalLow</item>
+        <item name="android:text">健康优秀</item>
+    </style>
+    <style name="TextAppearance_ToolBar_End">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:text">健康优秀</item>
+    </style>
+
 </resources>

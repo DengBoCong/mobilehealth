@@ -30,10 +30,10 @@ public class MainTabFragment extends Fragment {
     private List<Fragment> listFragment;
     private List<String> listTitle;
 
-    private TextFragment hotRecommendFragment;              //热门推荐fragment
-    private TextFragment hotCollectionFragment;            //热门收藏fragment
-    private TextFragment hotMonthFragment;                      //本月热榜fragment
-    private TextFragment hotToday;                                      //今日热榜fragment
+    private TextFragment hotRecommendFragment;
+    private TextFragment hotCollectionFragment;
+    private TextFragment hotMonthFragment;
+    private TextFragment hotToday;
 
     @Nullable
     @Override
