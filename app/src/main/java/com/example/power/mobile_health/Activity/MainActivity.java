@@ -1,7 +1,15 @@
 package com.example.power.mobile_health.Activity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,6 +32,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.power.mobile_health.Adapter.MainTabAdapter;
 import com.example.power.mobile_health.Adapter.RecyclerViewAdapter;
@@ -31,16 +42,23 @@ import com.example.power.mobile_health.Fragment.MainTabFragment;
 import com.example.power.mobile_health.Fragment.TextFragment;
 import com.example.power.mobile_health.Listener.AppBarStateChangeListener;
 import com.example.power.mobile_health.R;
+import com.example.power.mobile_health.Utils.AnimatorButton;
+import com.example.power.mobile_health.Utils.DragFloatActionButton;
+import com.example.power.mobile_health.Utils.UsualDialogger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final int MOVABLE_COUNT = 4;//设置Tab小于等于4个，不滑动
+    private float DENSITY;
+    //dp和px之间的转化公式：px = (dp * density + 0.5f), dp = (px / density + 0.5f)
     private ViewPager tlViewPager;
     private PagerAdapter tlPagerAdapter;
     private TabLayout tabLayout;
     private FragmentPagerAdapter fragmentPagerAdapter;
+    private UsualDialogger dialogger = null;
 
     private List<Fragment> listFragment;
     private List<String> listTitle;
@@ -49,23 +67,31 @@ public class MainActivity extends AppCompatActivity
     private TextFragment hotCollectionFragment;
     private TextFragment hotMonthFragment;
     private TextFragment hotToday;
+    private TextFragment hotCollectionFragment1;
+    private TextFragment hotMonthFragment1;
+    private TextFragment hotToday1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DENSITY = getResources().getDisplayMetrics().density;
 
         /*针对标题栏进行相关的操作*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        setTitle("为您保驾护航");
+
         /*设置悬浮按钮*/
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+        DragFloatActionButton fab = (DragFloatActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                showUsualDialog();
             }
         });
 
@@ -89,41 +115,25 @@ public class MainActivity extends AppCompatActivity
                     .add(R.id.fg_container, mainTabFragment).commit();
         }*/
 
-        initTabPageLayout();
+        initTabPageLayout();//初始化TabLayout
+        initCheckButton();//初始化点击检测按钮
 
         AppBarLayout appBarLayout = (AppBarLayout)findViewById(R.id.main_appBarLayout);
 
         appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
             @Override
             public void onStateChanged(AppBarLayout appBarLayout, State state) {
-                Log.d("STATE", state.name());
-                if( state == State.EXPANDED ) {
-
-                    //展开状态
-
-                }else if(state == State.COLLAPSED){
-                    //折叠状态
-
-                }else {
-
-                    //中间状态
-
+                ConstraintLayout constraintLayout = (ConstraintLayout)findViewById(R.id.main_ToolbarTitleLayout) ;
+                if( state == State.EXPANDED ) {//展开状态
+                    constraintLayout.setVisibility(View.GONE);
+                }else if(state == State.COLLAPSED){//折叠状态
+                    constraintLayout.setVisibility(View.VISIBLE);
+                }else {//中间状态
+                    constraintLayout.setVisibility(View.GONE);
                 }
             }
         });
-        /*List<String> mDatas;
-        RecyclerViewAdapter recyclerViewAdapter;
-        mDatas = new ArrayList<String>();
-        for ( int i=0; i < 40; i++) {
-            mDatas.add( "item"+i);
-        }
-        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, mDatas);
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.main_recyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(recyclerViewAdapter);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());*/
     }
 
     @Override
@@ -203,33 +213,78 @@ public class MainActivity extends AppCompatActivity
     public void initTabPageLayout(){
         tlViewPager = (ViewPager)findViewById(R.id.vp_mainActivity);
         tabLayout = (TabLayout)findViewById(R.id.tl_mainActivity);
+        tabLayout.setBackgroundColor(getResources().getColor(R.color.colorToolbar));
 
         //初始化各fragment
         hotRecommendFragment = new TextFragment();
         hotCollectionFragment = new TextFragment();
         hotMonthFragment = new TextFragment();
         hotToday = new TextFragment();
+        hotCollectionFragment1 = new TextFragment();
+        hotMonthFragment1 = new TextFragment();
+        hotToday1 = new TextFragment();
 
         listFragment = new ArrayList<>();
         listFragment.add(hotRecommendFragment);
         listFragment.add(hotCollectionFragment);
         listFragment.add(hotMonthFragment);
         listFragment.add(hotToday);
+        listFragment.add(hotCollectionFragment1);
+        listFragment.add(hotMonthFragment1);
+        listFragment.add(hotToday1);
 
         listTitle = new ArrayList<>();
-        listTitle.add("热门推荐");
-        listTitle.add("热门收藏");
-        listTitle.add("本月热榜");
-        listTitle.add("今日热榜");
+        listTitle.add("综合指数");
+        listTitle.add("心率指数");
+        listTitle.add("体温指数");
+        listTitle.add("血压指数");
+        listTitle.add("体重指数");
+        listTitle.add("血氧指数");
+        listTitle.add("血脂指数");
 
-        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        tabLayout.setTabMode(listTitle.size() > MOVABLE_COUNT ? TabLayout.MODE_SCROLLABLE: TabLayout.MODE_FIXED);
         tabLayout.addTab(tabLayout.newTab().setText(listTitle.get(0)));
         tabLayout.addTab(tabLayout.newTab().setText(listTitle.get(1)));
         tabLayout.addTab(tabLayout.newTab().setText(listTitle.get(2)));
         tabLayout.addTab(tabLayout.newTab().setText(listTitle.get(3)));
+        tabLayout.addTab(tabLayout.newTab().setText(listTitle.get(4)));
+        tabLayout.addTab(tabLayout.newTab().setText(listTitle.get(5)));
+        tabLayout.addTab(tabLayout.newTab().setText(listTitle.get(6)));
 
         fragmentPagerAdapter = new MainTabAdapter(this.getSupportFragmentManager(), listFragment, listTitle);
         tlViewPager.setAdapter(fragmentPagerAdapter);
         tabLayout.setupWithViewPager(tlViewPager);
+    }
+
+    public void initCheckButton(){
+        final AnimatorButton checkButton = (AnimatorButton)findViewById(R.id.main_checkButton);
+        checkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkButton.startAnim();
+            }
+        });
+    }
+
+    public void showUsualDialog(){
+        dialogger = UsualDialogger.Builder(this)
+                .setTitle("通用对话框")
+                .setMessage(getResources().getString(R.string.lorem_ipsum))
+                .setOnConfirmClickListener("读取", new UsualDialogger.onConfirmClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this, "读取", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setOnCancelClickListener("了解", new UsualDialogger.onCancelClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this, "了解", Toast.LENGTH_SHORT).show();
+                        if (dialogger != null) {
+                            dialogger.dismiss();
+                        }
+                    }
+                })
+                .build().shown();
     }
 }

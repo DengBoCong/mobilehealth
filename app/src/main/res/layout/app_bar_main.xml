@@ -10,7 +10,8 @@
         android:id="@+id/main_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="@color/colorBlue">
         <!--app:expandedTitleMarginEnd="64dp"
                     app:expandedTitleMarginStart="48dp"-->
         <android.support.design.widget.CollapsingToolbarLayout
@@ -20,7 +21,7 @@
             app:contentScrim="?attr/colorPrimary"
             app:collapsedTitleTextAppearance="@style/TextAppearance_ToolBar_Start"
             app:expandedTitleTextAppearance="@style/TextAppearance_ToolBar_End"
-            app:expandedTitleGravity="center_horizontal|center_vertical"
+            app:expandedTitleGravity="center_horizontal|bottom"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <!--固定在顶部，ToolBar代替CollapsindToolbarLayout显示-->
             <!--collapsedTitleTextAppearance必须使用style，而不能直接使用color-->
@@ -71,9 +72,8 @@
                         android:layout_gravity="right|center_vertical"
                         android:background="@drawable/main_toolbar_navigation_nav_selector"/>
                 </LinearLayout>-->
+                <include layout="@layout/main_toolbar_titlelayout"/>
             </android.support.v7.widget.Toolbar>
-
-
         </android.support.design.widget.CollapsingToolbarLayout>
 
         <!--设置顶部的Tab，TabLayout一般配合ViewPager使用-->
@@ -81,10 +81,9 @@
             android:id="@+id/tl_mainActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:background="?android:attr/selectableItemBackground"
-            app:tabIndicatorColor="@color/colorBlack"
-            app:tabSelectedTextColor="@color/colorGray"
-            app:tabTextColor="@color/colorBlack"/>
+            app:tabIndicatorColor="@color/colorBlue"
+            app:tabSelectedTextColor="@color/colorBlue"
+            app:tabTextColor="@color/colorNormalLow"/>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
@@ -100,7 +99,7 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
 
-    <android.support.design.widget.FloatingActionButton
+    <com.example.power.mobile_health.Utils.DragFloatActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

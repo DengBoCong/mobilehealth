@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contentView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        style="?android:textAppearanceMedium"
-        android:padding="16dp"
-        android:lineSpacingMultiplier="1.2"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lorem_ipsum"/>
-</ScrollView>-->
-<android.support.v7.widget.RecyclerView android:id="@+id/main_recyclerView"
+        android:orientation="vertical">
+        <TextView
+            android:padding="16dp"
+            android:lineSpacingMultiplier="1.2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lorem_ipsum"
+            xmlns:android="http://schemas.android.com/apk/res/android" />
+        <TextView
+            android:padding="16dp"
+            android:lineSpacingMultiplier="1.2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lorem_ipsum"
+            xmlns:android="http://schemas.android.com/apk/res/android" />
+    </LinearLayout>
+    </ScrollView>
+<!--<android.support.v7.widget.RecyclerView android:id="@+id/main_recyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" />
+    xmlns:app="http://schemas.android.com/apk/res-auto" />-->

@@ -30,17 +30,17 @@ public class TextFragment extends Fragment {
                  R.layout.fragment_screen_slide_page, container, false
         );
 
-        initData(rootView);
+        /*initData(rootView);*/
 
         return rootView;
     }
 
-    public void initData(View view){
+    /*public void initData(View view){
 
         List<String> mDatas;
         RecyclerViewAdapter recyclerViewAdapter;
         mDatas = new ArrayList<String>();
-        for ( int i=0; i < 40; i++) {
+        for ( int i=0; i < 1; i++) {
             mDatas.add( "item"+i);
         }
         recyclerViewAdapter = new RecyclerViewAdapter(getActivity(), mDatas);
@@ -50,5 +50,5 @@ public class TextFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-    }
+    }*/
 }
