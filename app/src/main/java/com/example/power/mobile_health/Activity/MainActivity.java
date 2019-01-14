@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -38,8 +39,15 @@ import android.widget.Toast;
 
 import com.example.power.mobile_health.Adapter.MainTabAdapter;
 import com.example.power.mobile_health.Adapter.RecyclerViewAdapter;
+import com.example.power.mobile_health.Fragment.BloodFatIndexFragment;
+import com.example.power.mobile_health.Fragment.BloodOxygenIndexFragment;
+import com.example.power.mobile_health.Fragment.BloodPressureIndexFragment;
+import com.example.power.mobile_health.Fragment.CompositeIndexFragment;
+import com.example.power.mobile_health.Fragment.HeartRateIndexFragment;
 import com.example.power.mobile_health.Fragment.MainTabFragment;
+import com.example.power.mobile_health.Fragment.TemperatureIndexFragment;
 import com.example.power.mobile_health.Fragment.TextFragment;
+import com.example.power.mobile_health.Fragment.WeightIndexFragment;
 import com.example.power.mobile_health.Listener.AppBarStateChangeListener;
 import com.example.power.mobile_health.R;
 import com.example.power.mobile_health.Utils.AnimatorButton;
@@ -63,13 +71,13 @@ public class MainActivity extends AppCompatActivity
     private List<Fragment> listFragment;
     private List<String> listTitle;
 
-    private TextFragment hotRecommendFragment;
-    private TextFragment hotCollectionFragment;
-    private TextFragment hotMonthFragment;
-    private TextFragment hotToday;
-    private TextFragment hotCollectionFragment1;
-    private TextFragment hotMonthFragment1;
-    private TextFragment hotToday1;
+    private CompositeIndexFragment compositeIndexFragment;
+    private HeartRateIndexFragment heartRateIndexFragment;
+    private TemperatureIndexFragment temperatureIndexFragment;
+    private BloodPressureIndexFragment bloodPressureIndexFragment;
+    private WeightIndexFragment weightIndexFragment;
+    private BloodOxygenIndexFragment bloodOxygenIndexFragment;
+    private BloodFatIndexFragment bloodFatIndexFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,22 +224,22 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setBackgroundColor(getResources().getColor(R.color.colorToolbar));
 
         //初始化各fragment
-        hotRecommendFragment = new TextFragment();
-        hotCollectionFragment = new TextFragment();
-        hotMonthFragment = new TextFragment();
-        hotToday = new TextFragment();
-        hotCollectionFragment1 = new TextFragment();
-        hotMonthFragment1 = new TextFragment();
-        hotToday1 = new TextFragment();
+        compositeIndexFragment = new CompositeIndexFragment();
+        heartRateIndexFragment = new HeartRateIndexFragment();
+        temperatureIndexFragment = new TemperatureIndexFragment();
+        bloodPressureIndexFragment = new BloodPressureIndexFragment();
+        weightIndexFragment = new WeightIndexFragment();
+        bloodOxygenIndexFragment = new BloodOxygenIndexFragment();
+        bloodFatIndexFragment = new BloodFatIndexFragment();
 
         listFragment = new ArrayList<>();
-        listFragment.add(hotRecommendFragment);
-        listFragment.add(hotCollectionFragment);
-        listFragment.add(hotMonthFragment);
-        listFragment.add(hotToday);
-        listFragment.add(hotCollectionFragment1);
-        listFragment.add(hotMonthFragment1);
-        listFragment.add(hotToday1);
+        listFragment.add(compositeIndexFragment);
+        listFragment.add(heartRateIndexFragment);
+        listFragment.add(temperatureIndexFragment);
+        listFragment.add(bloodPressureIndexFragment);
+        listFragment.add(weightIndexFragment);
+        listFragment.add(bloodOxygenIndexFragment);
+        listFragment.add(bloodFatIndexFragment);
 
         listTitle = new ArrayList<>();
         listTitle.add("综合指数");

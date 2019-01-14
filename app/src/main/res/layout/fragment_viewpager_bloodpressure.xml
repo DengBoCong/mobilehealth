@@ -18,8 +18,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <com.github.mikephil.charting.charts.RadarChart
-            android:id="@+id/radarChart_composite"
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart_bloodpressure"
             android:layout_width="330dp"
             android:layout_height="300dp"
             android:layout_marginEnd="8dp"
@@ -39,7 +39,7 @@
             android:background="@drawable/chart_radarchart_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radarChart_composite">
+            app:layout_constraintTop_toBottomOf="@+id/barChart_bloodpressure">
 
         </android.support.constraint.ConstraintLayout>
 
