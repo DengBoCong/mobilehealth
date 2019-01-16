@@ -1,13 +1,19 @@
 package com.example.power.mobile_health.Fragment;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.widget.Toast;
 
 import com.example.power.mobile_health.R;
 import com.example.power.mobile_health.Utils.MpChartUtils.RadarMarkerView;
@@ -31,6 +37,7 @@ import java.util.ArrayList;
 
 public class CompositeIndexFragment extends Fragment {
     private RadarChart chart;
+    private SwipeRefreshLayout swipeRefreshLayout;
     /*private Typeface tfLight = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");*/
 
     @Nullable
@@ -46,6 +53,18 @@ public class CompositeIndexFragment extends Fragment {
 
     public void initLayout(View view){
         chart = view.findViewById(R.id.radarChart_composite);
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout_composite);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light, android.R.color.holo_orange_light);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                Toast.makeText(getActivity(), "正在下拉刷新", Toast.LENGTH_LONG).show();
+                swipeRefreshLayout.setRefreshing(false);//结束动画
+            }
+        });
 
         /*chart.setBackgroundColor(getResources().getColor(R.color.colorOldMain));*//*Color.rgb(60, 65, 82)*/
         chart.getDescription().setEnabled(false);
@@ -97,10 +116,18 @@ public class CompositeIndexFragment extends Fragment {
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
-        /*l.setTypeface(tfLight);*/
         l.setXEntrySpace(7f);
         l.setYEntrySpace(5f);
         l.setTextColor(getResources().getColor(R.color.colorBlackLow));
+
+        /*AnimatorSet animatorSet = new AnimatorSet();
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(chart, "rotation", 0, 360);
+        objectAnimator.setRepeatCount(Animation.INFINITE);
+        animatorSet.setDuration(5000);
+        animatorSet.playTogether(objectAnimator);
+        animatorSet.start();
+
+        chart.setRotation(360);*/
     }
 
     private void setData() {

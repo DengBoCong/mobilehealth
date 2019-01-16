@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tv_item"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:id="@+id/temperature_recyclerView_item"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/recyclerview_temperature_history"
+    android:layout_marginTop="7dp">
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/temperature_time_tv"
+        android:layout_width="165dp" android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="left|center_vertical"/>
 
-</TextView>
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/temperature_value_tv"
+        android:layout_width="165dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="right|center_vertical"/>
+</android.support.constraint.ConstraintLayout>

@@ -5,33 +5,53 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/nav_message"
+            android:icon="@drawable/ic_email_black_24dp"
             android:title="我的消息" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="健康报告" />
+            android:id="@+id/nav_money"
+            android:icon="@drawable/ic_monetization_on_black_24dp"
+            android:title="我的钱包" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="娱乐咨询" />
+            android:id="@+id/nav_report"
+            android:icon="@drawable/ic_assignment_black_24dp"
+            android:title="健康周报" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
+            android:id="@+id/nav_doctor"
+            android:icon="@drawable/ic_perm_contact_calendar_black_24dp"
+            android:title="私人医生" />
 
-    <item android:title="Communicate">
+    </group>
+    <item android:title="辅助功能">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_manage"
+                android:icon="@drawable/ic_screen_lock_portrait_black_24dp"
+                android:title="设备管理" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_consult"
+                android:icon="@drawable/ic_menu_class"
+                android:title="娱乐咨询" />
+            <item
+                android:id="@+id/nav_navigation"
+                android:icon="@drawable/ic_person_pin_circle_black_24dp"
+                android:title="智能导航" />
+        </menu>
+    </item>
+    <item android:title="云端平台">
+        <menu>
+            <item
+                android:id="@+id/nav_cloudSync"
+                android:icon="@drawable/ic_cloud_upload_black_24dp"
+                android:title="云端同步" />
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_menu_advice"
+                android:title="意见反馈" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_menu_about"
+                android:title="关于" />
         </menu>
     </item>
 

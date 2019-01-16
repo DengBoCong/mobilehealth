@@ -1,11 +1,16 @@
-package com.example.power.mobile_health.Utils;
+package com.example.power.mobile_health.Utils.Module;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.DecelerateInterpolator;
+
+import com.example.power.mobile_health.R;
+import com.example.power.mobile_health.Utils.ScreenUtils;
 
 /**
  * Created by Power on 2019/1/12.
@@ -17,23 +22,40 @@ public class DragFloatActionButton extends FloatingActionButton {
     private int screenWidthHalf;
     private int statusHeight;
     private int virtualHeight;
+    private Context contextq;
 
     public DragFloatActionButton(Context context){
         super(context);
+        contextq = context;
         init();
     }
 
     public DragFloatActionButton(Context context, AttributeSet attributeSet){
         super(context, attributeSet);
+        contextq = context;
         init();
     }
 
     public DragFloatActionButton(Context context, AttributeSet attributeSet, int defStyleA){
         super(context, attributeSet, defStyleA);
+        contextq = context;
         init();
     }
 
+    private ColorStateList getColorStateListTest(int colorRes) {
+        int[][] states = new int[][]{
+                new int[]{android.R.attr.state_enabled}, // enabled
+                new int[]{-android.R.attr.state_enabled}, // disabled
+                new int[]{-android.R.attr.state_checked}, // unchecked
+                new int[]{android.R.attr.state_pressed}  // pressed
+        };
+        int color = ContextCompat.getColor(contextq, colorRes);
+        int[] colors = new int[]{color, color, color, color};
+        return new ColorStateList(states, colors);
+    }
+
     private void init(){
+        setBackgroundTintList(getColorStateListTest(R.color.colorWhile));
         screenWidth = ScreenUtils.getScreenWidth(getContext());
         screenWidthHalf = screenWidth / 2;
         screenHeight = ScreenUtils.getScreenHeight(getContext());

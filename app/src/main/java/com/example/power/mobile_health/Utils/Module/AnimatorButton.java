@@ -1,4 +1,4 @@
-package com.example.power.mobile_health.Utils;
+package com.example.power.mobile_health.Utils.Module;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -55,6 +55,7 @@ public class AnimatorButton extends Button {
         gradientDrawable.setCornerRadius(80);
         setBackground(gradientDrawable);
         setText("立即检测");
+        setTextColor(getResources().getColor(R.color.colorWhile));
         setTextSize(20);
 
         paint = new Paint();
@@ -90,7 +91,8 @@ public class AnimatorButton extends Button {
                 int value = (int)animation.getAnimatedValue();
                 int leftOffset = (width - value) / 2;
                 int rightOffset = width - leftOffset;
-
+                //width是控件的width,value是变化的值，leftOffset是控件新的左边界到原
+                // 左边界的距离，rightOffset是控件新的右边界到原左边界的距离
                 gradientDrawable.setBounds(leftOffset, 0, rightOffset, height);
             }
         });

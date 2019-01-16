@@ -37,7 +37,7 @@ public class XYMarkerView extends MarkerView {
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
 
-        tvContent.setText(String.format("x: %s, y: %s", xAxisValueFormatter.getFormattedValue(e.getX(), null), format.format(e.getY())));
+        tvContent.setText(String.format("当日最高体温: %s, 当日最低体温: %s", xAxisValueFormatter.getFormattedValue(e.getX(), null), format.format(e.getY())));
 
         super.refreshContent(e, highlight);
     }

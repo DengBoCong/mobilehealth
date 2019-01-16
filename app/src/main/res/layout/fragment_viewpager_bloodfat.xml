@@ -1,152 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
+<android.support.v4.widget.SwipeRefreshLayout android:id="@+id/swipeRefreshLayout_bloodfat"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <View
-            android:layout_width="330dp"
-            android:layout_height="300dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/chart_radarchart_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart_bloodfat"
-            android:layout_width="330dp"
-            android:layout_height="300dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/><!--android:background="@drawable/chart_radarchart_background"-->
-
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/composite_constraintLayout_heart"
-            android:layout_width="330dp"
-            android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/chart_radarchart_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pieChart_bloodfat">
+            xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        </android.support.constraint.ConstraintLayout>
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/bloodfat_constraintLayout_checkList"
+                android:layout_width="330dp"
+                android:layout_height="150dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bloodfat_constraintLayout_mainCheck"
+                android:visibility="gone">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/bloodfat_historyList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/composite_constraintLayout_temperature"
-            android:layout_width="330dp"
-            android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/chart_radarchart_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/composite_constraintLayout_heart">
+                </android.support.v7.widget.RecyclerView>
+            </android.support.constraint.ConstraintLayout>
 
-        </android.support.constraint.ConstraintLayout>
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/bloodfat_constraintLayout_mainCheck"
+                android:layout_width="330dp"
+                android:layout_height="150dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/chart_radarchart_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="165dp"
+                    android:layout_height="150dp"
+                    app:layout_constraintLeft_toLeftOf="parent">
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/composite_constraintLayout_bloodPressure"
-            android:layout_width="330dp"
-            android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/chart_radarchart_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/composite_constraintLayout_temperature">
+                    <TextView
+                        android:id="@+id/bloodfat_heightValue"
+                        android:layout_width="550px"
+                        android:layout_height="300px"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="20.1"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="180px"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        </android.support.constraint.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/bloodfat_heightUnit"
+                        android:layout_width="250px"
+                        android:layout_height="250px"
+                        android:layout_marginTop="64dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="%"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="70px"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/composite_constraintLayout_weight"
-            android:layout_width="330dp"
-            android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/chart_radarchart_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/composite_constraintLayout_bloodPressure">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="21dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="血脂率"
+                        android:textColor="@color/colorBlue"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="165dp"
+                    android:layout_height="150dp"
+                    app:layout_constraintRight_toRightOf="parent">
 
-        </android.support.constraint.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/bloodfat_lowValue"
+                        android:layout_width="550px"
+                        android:layout_height="300px"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="22.0"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="180px"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/composite_constraintLayout_bloodOxygen"
-            android:layout_width="330dp"
-            android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/chart_radarchart_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/composite_constraintLayout_weight">
+                    <TextView
+                        android:id="@+id/bloodfat_lowUnit"
+                        android:layout_width="250px"
+                        android:layout_height="250px"
+                        android:layout_marginTop="64dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="分"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="70px"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        </android.support.constraint.ConstraintLayout>
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="21dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="BMI指数"
+                        android:textColor="@color/colorBlue"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </android.support.constraint.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/composite_constraintLayout_bloodFat"
-            android:layout_width="330dp"
-            android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/chart_radarchart_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/composite_constraintLayout_bloodOxygen">
+                <TextView
+                    android:id="@+id/bloodfat_updateTime"
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="数据更新时间"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="2019-1-15 19:37:16"
+                    android:gravity="center_vertical|center_horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bloodfat_updateTime" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="16dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/composite_constraintLayout_bloodFat">
-
-            <TextView
-                android:id="@+id/tv_third_login_explain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="已经到底啦"
-                android:textColor="#5C5C5C"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/bloodfat_historyMore"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="︾"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/colorBlackLow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </android.support.constraint.ConstraintLayout>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/tv_third_login_explain"
-                android:background="#969696" />
+                android:layout_width="330dp"
+                android:layout_height="300dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/chart_radarchart_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bloodfat_constraintLayout_checkList" />
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart_bloodfat"
+                android:layout_width="330dp"
+                android:layout_height="300dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bloodfat_constraintLayout_checkList"/><!--android:background="@drawable/chart_radarchart_background"-->
 
-            <View
+
+
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="60dp"
-                android:layout_toRightOf="@+id/tv_third_login_explain"
-                android:background="#969696" />
-        </RelativeLayout>
-    </android.support.constraint.ConstraintLayout>
-</ScrollView>
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/pieChart_bloodfat">
+
+                <TextView
+                    android:id="@+id/tv_third_login_explain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="已经到底啦"
+                    android:textColor="#5C5C5C"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/tv_third_login_explain"
+                    android:background="#969696" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_toRightOf="@+id/tv_third_login_explain"
+                    android:background="#969696" />
+            </RelativeLayout>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

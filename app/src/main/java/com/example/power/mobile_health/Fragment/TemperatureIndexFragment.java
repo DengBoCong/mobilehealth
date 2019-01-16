@@ -1,15 +1,29 @@
 package com.example.power.mobile_health.Fragment;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.power.mobile_health.Adapter.RecyclerViewAdapter;
 import com.example.power.mobile_health.R;
+import com.example.power.mobile_health.Utils.Module.CircleTextView;
 import com.example.power.mobile_health.Utils.MpChartUtils.MyValueFormatter;
 import com.example.power.mobile_health.Utils.MpChartUtils.TimeAxisValueFormatter;
 import com.example.power.mobile_health.Utils.MpChartUtils.XYMarkerView;
@@ -32,6 +46,8 @@ import java.util.List;
 
 public class TemperatureIndexFragment extends Fragment {
     private BarChart chart;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private boolean historyIsOpen;
 
     @Nullable
     @Override
@@ -44,6 +60,10 @@ public class TemperatureIndexFragment extends Fragment {
     }
 
     public void initLayout(View view){
+        initSwipeRefreshLayout(view);
+        initDataTextView(view);
+        initRecyclerView(view);
+
         chart = view.findViewById(R.id.barChart_temperature);
 
         chart.setDrawBarShadow(false);
@@ -91,7 +111,7 @@ public class TemperatureIndexFragment extends Fragment {
         rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         Legend l = chart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
@@ -133,7 +153,7 @@ public class TemperatureIndexFragment extends Fragment {
             chart.notifyDataSetChanged();
 
         } else {
-            set1 = new BarDataSet(values, "The year 2017");
+            set1 = new BarDataSet(values, "近一周日均体温");
 
             /*set1.setDrawIcons(false);*/
 
@@ -186,5 +206,90 @@ public class TemperatureIndexFragment extends Fragment {
 
             chart.setData(data);
         }
+    }
+
+    private void initSwipeRefreshLayout(View view){
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout_temperature);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light, android.R.color.holo_orange_light);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getActivity(), "正在刷新", Toast.LENGTH_LONG).show();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
+    private void initDataTextView(View view){
+        CircleTextView personTemp = view.findViewById(R.id.temperature_personTemp);
+        CircleTextView personUnit = view.findViewById(R.id.temperature_personUnit);
+        CircleTextView personTitle = view.findViewById(R.id.temperature_personTitle);
+        CircleTextView carTemp = view.findViewById(R.id.temperature_carTemp);
+        CircleTextView carUnit = view.findViewById(R.id.temperature_carUnit);
+        CircleTextView carTitle = view.findViewById(R.id.temperature_carTitle);
+
+        personTemp.defineDrawable(150, android.R.color.holo_red_light);
+        personUnit.defineDrawable(90, android.R.color.holo_orange_light);
+        personTitle.defineDrawable(30, android.R.color.holo_blue_light);
+        carTemp.defineDrawable(150, android.R.color.holo_red_light);
+        carUnit.defineDrawable(90, android.R.color.holo_orange_light);
+        carTitle.defineDrawable(30, android.R.color.holo_blue_light);
+    }
+
+    private void initRecyclerView(View view){
+        historyIsOpen = false;
+        final ConstraintLayout checkList = (ConstraintLayout)view.findViewById(R.id.temperature_constraintLayout_checkList);
+        final TextView historyMore = (TextView)view.findViewById(R.id.temperature_historyMore);
+
+        List<ArrayList<String> > mDatas;
+        RecyclerViewAdapter recyclerViewAdapter;
+        mDatas = new ArrayList<>();
+
+        for(int i = 0; i < 10; i++){
+            ArrayList<String> keyValue = new ArrayList<>();
+            keyValue.add("2019-1-16  9:40:16");
+            keyValue.add("37.6℃/35.6℃");
+            mDatas.add(keyValue);
+        }
+        recyclerViewAdapter = new RecyclerViewAdapter(getActivity(), mDatas);
+
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.temperature_historyList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(historyMore, "translationY", -25f, 40f);
+        objectAnimator.setRepeatCount(Animation.INFINITE);
+        ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(historyMore, "alpha", 0, 1);
+        objectAnimator1.setRepeatCount(Animation.INFINITE);
+        animatorSet.playTogether(objectAnimator, objectAnimator1);
+        animatorSet.setDuration(1800);
+        animatorSet.start();
+
+        final AnimatorSet animatorSet1 = new AnimatorSet();
+        ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(checkList, "alpha", 0, 1);
+        ObjectAnimator objectAnimator3 = ObjectAnimator.ofFloat(checkList, "translationY", -500f, 0f);
+        animatorSet1.playTogether(objectAnimator2, objectAnimator3);
+        animatorSet1.setDuration(1500);
+
+        historyMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(historyIsOpen){
+                    historyIsOpen = false;
+                    historyMore.setText("︾");
+                    checkList.setVisibility(View.GONE);
+                }else{
+                    historyIsOpen = true;
+                    historyMore.setText("︽");
+                    checkList.setVisibility(View.VISIBLE);
+                    animatorSet1.start();
+                }
+
+            }
+        });
     }
 }

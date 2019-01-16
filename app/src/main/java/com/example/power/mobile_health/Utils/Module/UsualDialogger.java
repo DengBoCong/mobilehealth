@@ -1,6 +1,5 @@
-package com.example.power.mobile_health.Utils;
+package com.example.power.mobile_health.Utils.Module;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;

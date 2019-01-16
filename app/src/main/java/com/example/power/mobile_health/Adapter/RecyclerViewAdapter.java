@@ -12,17 +12,19 @@ import android.widget.TextView;
 
 import com.example.power.mobile_health.R;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Power on 2019/1/5.
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
-    private List<String> mDatas;
+    private List<ArrayList<String> > mDatas;
     private Context context;
     private LayoutInflater layoutInflater;
-    public RecyclerViewAdapter(Context context, List<String> mDatas){
+    public RecyclerViewAdapter(Context context, List<ArrayList<String> > mDatas){
         this.context = context;
         this.mDatas = mDatas;
         layoutInflater = LayoutInflater.from(context);
@@ -35,7 +37,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.tv.setText( mDatas.get(position));
+        holder.time_tv.setText( mDatas.get(position).get(0));
+        holder.value_tv.setText(mDatas.get(position).get(1));
     }
 
     @NonNull
@@ -47,11 +50,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     class MyViewHolder extends ViewHolder{
-        TextView tv;
+        TextView time_tv;
+        TextView value_tv;
 
         public MyViewHolder(View view){
             super(view);
-            tv=(TextView) view.findViewById(R.id.tv_item);
+            time_tv = (TextView) view.findViewById(R.id.temperature_time_tv);
+            value_tv = (TextView)view.findViewById(R.id.temperature_value_tv);
         }
     }
 }

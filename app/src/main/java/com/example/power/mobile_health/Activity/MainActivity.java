@@ -1,28 +1,14 @@
 package com.example.power.mobile_health.Activity;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -33,26 +19,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.power.mobile_health.Adapter.MainTabAdapter;
-import com.example.power.mobile_health.Adapter.RecyclerViewAdapter;
 import com.example.power.mobile_health.Fragment.BloodFatIndexFragment;
 import com.example.power.mobile_health.Fragment.BloodOxygenIndexFragment;
 import com.example.power.mobile_health.Fragment.BloodPressureIndexFragment;
 import com.example.power.mobile_health.Fragment.CompositeIndexFragment;
 import com.example.power.mobile_health.Fragment.HeartRateIndexFragment;
-import com.example.power.mobile_health.Fragment.MainTabFragment;
 import com.example.power.mobile_health.Fragment.TemperatureIndexFragment;
-import com.example.power.mobile_health.Fragment.TextFragment;
 import com.example.power.mobile_health.Fragment.WeightIndexFragment;
 import com.example.power.mobile_health.Listener.AppBarStateChangeListener;
 import com.example.power.mobile_health.R;
-import com.example.power.mobile_health.Utils.AnimatorButton;
-import com.example.power.mobile_health.Utils.DragFloatActionButton;
-import com.example.power.mobile_health.Utils.UsualDialogger;
+import com.example.power.mobile_health.Utils.Module.AnimatorButton;
+import com.example.power.mobile_health.Utils.Module.DragFloatActionButton;
+import com.example.power.mobile_health.Utils.Module.MainIndexAnimatorButton;
+import com.example.power.mobile_health.Utils.Module.UsualDialogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showUsualDialog();
+                /*showUsualDialog();*/
             }
         });
 
@@ -183,17 +165,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_message) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_doctor) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_about) {
 
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_cloudSync) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_money) {
 
         }
 
@@ -266,25 +248,60 @@ public class MainActivity extends AppCompatActivity
 
     public void initCheckButton(){
         final AnimatorButton checkButton = (AnimatorButton)findViewById(R.id.main_checkButton);
+
+        final MainIndexAnimatorButton heartButton = (MainIndexAnimatorButton)findViewById(R.id.main_button_heartrate);
+        final MainIndexAnimatorButton temperatureButton = (MainIndexAnimatorButton)findViewById(R.id.main_button_temperature);
+        final MainIndexAnimatorButton bloodPressureButton = (MainIndexAnimatorButton)findViewById(R.id.main_button_bloodPressure);
+        final MainIndexAnimatorButton bloodFatButton = (MainIndexAnimatorButton)findViewById(R.id.main_button_bloodFat);
+        final MainIndexAnimatorButton weightButton = (MainIndexAnimatorButton)findViewById(R.id.main_button_weight);
+        final MainIndexAnimatorButton bloodOxygenButton = (MainIndexAnimatorButton)findViewById(R.id.main_button_bloodOxygen);
+
+        heartButton.setText("心率");
+        temperatureButton.setText("体温");
+        bloodPressureButton.setText("血压");
+        bloodFatButton.setText("血脂");
+        weightButton.setText("体重");
+        bloodOxygenButton.setText("血氧");
+
+        heartButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                showUsualDialog("心率情况：正常", "上一次心率为69次/分，属于正常，过去的历史记录中分析，无危险到驾驶的情况，请放心驾驶", "了解", "读取");
+            }
+        });
+
+        temperatureButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                showUsualDialog("体温情况：正常", "上一次体温为37.8℃，属于正常，过去的历史记录中分析，无危险到驾驶的情况，请放心驾驶", "了解", "读取");
+            }
+        });
+
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkButton.startAnim();
+                heartButton.startAnim(0f, 270f, 0f, 240f);
+                temperatureButton.startAnim(0f, -270f, 0f, 240f);
+                bloodPressureButton.startAnim(0f, 270f, 0f, -240f);
+                bloodFatButton.startAnim(0f, -270f, 0f, -240f);
+                weightButton.startAnim(0f, -370f, 0f, 0f);
+                bloodOxygenButton.startAnim(0f, 370f, 0f, 0f);
             }
         });
     }
 
-    public void showUsualDialog(){
+    public void showUsualDialog(String title, String content, String leftString, String rightString){
         dialogger = UsualDialogger.Builder(this)
-                .setTitle("通用对话框")
-                .setMessage(getResources().getString(R.string.lorem_ipsum))
-                .setOnConfirmClickListener("读取", new UsualDialogger.onConfirmClickListener() {
+                .setTitle(title)
+                .setMessage(content)
+                .setOnConfirmClickListener(rightString, new UsualDialogger.onConfirmClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(MainActivity.this, "读取", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setOnCancelClickListener("了解", new UsualDialogger.onCancelClickListener() {
+                .setOnCancelClickListener(leftString, new UsualDialogger.onCancelClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(MainActivity.this, "了解", Toast.LENGTH_SHORT).show();
