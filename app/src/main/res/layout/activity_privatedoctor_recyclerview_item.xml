@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:id="@+id/privatedoctor_recyclerview_item">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/privatedoctor_recyclerview_messageItem_leftLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.example.power.mobile_health.Utils.Module.CircleImageView
+            android:id="@+id/privatedoctor_recyclerview_messageItem_Image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/privatedoctor_recyclerview_messageItem_title"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical|left"
+            app:layout_constraintLeft_toRightOf="@+id/privatedoctor_recyclerview_messageItem_Image"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/privatedoctor_recyclerview_messageItem_content"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical|left"
+            app:layout_constraintTop_toBottomOf="@+id/privatedoctor_recyclerview_messageItem_title"
+            app:layout_constraintLeft_toRightOf="@+id/privatedoctor_recyclerview_messageItem_Image"/>
+    </android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/privatedoctor_recyclerview_messageItem_rightLayout"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toRightOf="@+id/privatedoctor_recyclerview_messageItem_leftLayout"
+        android:background="@color/colorBlue">
+        <TextView
+            android:id="@+id/tv_item_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.power.mobile_health.Fragment;
+package com.example.power.mobile_health.Fragment.Main;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;

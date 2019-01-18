@@ -21,14 +21,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.power.mobile_health.Activity.Drawer.HealthReporteActivity;
+import com.example.power.mobile_health.Activity.Drawer.PrivateDoctorActivity;
 import com.example.power.mobile_health.Adapter.MainTabAdapter;
-import com.example.power.mobile_health.Fragment.BloodFatIndexFragment;
-import com.example.power.mobile_health.Fragment.BloodOxygenIndexFragment;
-import com.example.power.mobile_health.Fragment.BloodPressureIndexFragment;
-import com.example.power.mobile_health.Fragment.CompositeIndexFragment;
-import com.example.power.mobile_health.Fragment.HeartRateIndexFragment;
-import com.example.power.mobile_health.Fragment.TemperatureIndexFragment;
-import com.example.power.mobile_health.Fragment.WeightIndexFragment;
+import com.example.power.mobile_health.Fragment.Main.BloodFatIndexFragment;
+import com.example.power.mobile_health.Fragment.Main.BloodOxygenIndexFragment;
+import com.example.power.mobile_health.Fragment.Main.BloodPressureIndexFragment;
+import com.example.power.mobile_health.Fragment.Main.CompositeIndexFragment;
+import com.example.power.mobile_health.Fragment.Main.HeartRateIndexFragment;
+import com.example.power.mobile_health.Fragment.Main.TemperatureIndexFragment;
+import com.example.power.mobile_health.Fragment.Main.WeightIndexFragment;
 import com.example.power.mobile_health.Listener.AppBarStateChangeListener;
 import com.example.power.mobile_health.R;
 import com.example.power.mobile_health.Utils.Module.AnimatorButton;
@@ -164,11 +166,19 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        item.setCheckable(false);//去除item被选中后的默认效果
 
         if (id == R.id.nav_message) {
-            // Handle the camera action
-        } else if (id == R.id.nav_doctor) {
+            /*Intent intent = new Intent(this, PersonActivity.class);
+            startActivity(intent);*/
+        } else if(id == R.id.nav_money){
 
+        }else if(id == R.id.nav_report){
+            Intent intent = new Intent(this, HealthReporteActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_doctor) {
+            Intent intent = new Intent(this, PrivateDoctorActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_about) {
 
         } else if (id == R.id.nav_manage) {

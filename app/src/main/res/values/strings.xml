@@ -22,6 +22,9 @@
     <string name="visitor_login">游客试用</string>
     <string name="third_party_login">其他登录方式</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="person_title">个人中心</string>
+    <string name="healthreporter">健康周报</string>
+    <string name="privatedoctor">私人医生</string>
 
     <!--ToolBar衍生出的变量-->
     <string name="navigation_drawer_open">打开侧边导航</string>

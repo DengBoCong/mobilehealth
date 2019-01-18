@@ -36,6 +36,15 @@
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/AppTheme_ToolBar"/>
+        <activity android:name=".Activity.Drawer.PersonActivity"
+            android:label="@string/person_title"
+            android:theme="@style/AppTheme_ToolBar"/>
+        <activity android:name=".Activity.Drawer.HealthReporteActivity"
+            android:label="@string/healthreporter"
+            android:theme="@style/AppTheme_ToolBar"/>
+        <activity android:name=".Activity.Drawer.PrivateDoctorActivity"
+            android:label="@string/privatedoctor"
+            android:theme="@style/AppTheme_ToolBar"/>
     </application>
 
 </manifest>

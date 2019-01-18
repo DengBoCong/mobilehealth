@@ -18,7 +18,10 @@
     <color name="colorBlackLow">#313335</color>
     <color name="colorBlack">#000000</color>
     <color name="colorBlackTran">#1D7C5C5C</color>
+    <color name="colorBlackTran1">#9F5BC7FF</color>
     <color name="colorBlue">#5BC7FF</color>
     <color name="colorOrange">#FF604E</color>
     <color name="colorOldMain">#F9F8EA</color>
+    <color name="colorYellowLow">#FAD44D</color>
+    <color name="colorRedLow">#B72024</color>
 </resources>
