@@ -47,11 +47,11 @@
             <item
                 android:id="@+id/nav_feedback"
                 android:icon="@drawable/ic_menu_advice"
-                android:title="意见反馈" />
+                android:title="帮助与反馈" />
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_menu_about"
-                android:title="关于" />
+                android:title="关于陌梦车载" />
         </menu>
     </item>
 

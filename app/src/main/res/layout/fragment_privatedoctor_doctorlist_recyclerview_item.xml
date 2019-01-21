@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.example.power.mobile_health.UI.Utils.Module.CircleImageView
+        android:id="@+id/privatedoctor_recyclerview_doctorListItem_Image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/privatedoctor_recyclerview_doctorListItem_title"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical|left"
+        app:layout_constraintLeft_toRightOf="@+id/privatedoctor_recyclerview_doctorListItem_Image"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/privatedoctor_recyclerview_doctorListItem_content"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:gravity="center_vertical|left"
+        app:layout_constraintTop_toBottomOf="@+id/privatedoctor_recyclerview_doctorListItem_title"
+        app:layout_constraintLeft_toRightOf="@+id/privatedoctor_recyclerview_doctorListItem_Image"/>
+</android.support.constraint.ConstraintLayout>

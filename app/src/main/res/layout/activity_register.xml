@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:fitsSystemWindows="true"
-    tools:context=".Activity.RegisterActivity">
+    tools:context=".UI.Activity.RegisterActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/register_toolbar"

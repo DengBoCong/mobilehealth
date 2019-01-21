@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".UI.Activity.WelcomeActivity"
             android:theme="@style/Theme_FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,27 +23,39 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.LoginMainActivity"
+            android:name=".UI.Activity.LoginMainActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".Activity.LoginActivity"
+            android:name=".UI.Activity.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme_ToolBar" />
         <activity
-            android:name=".Activity.RegisterActivity"
+            android:name=".UI.Activity.RegisterActivity"
             android:label="@string/phone_register_login"
             android:theme="@style/AppTheme_ToolBar" />
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".UI.Activity.MainActivity"
             android:theme="@style/AppTheme_ToolBar"/>
-        <activity android:name=".Activity.Drawer.PersonActivity"
+        <activity android:name=".UI.Activity.Drawer.PersonActivity"
             android:label="@string/person_title"
             android:theme="@style/AppTheme_ToolBar"/>
-        <activity android:name=".Activity.Drawer.HealthReporteActivity"
+        <activity android:name=".UI.Activity.Drawer.HealthReporteActivity"
             android:label="@string/healthreporter"
             android:theme="@style/AppTheme_ToolBar"/>
-        <activity android:name=".Activity.Drawer.PrivateDoctorActivity"
+        <activity android:name=".UI.Activity.Drawer.PrivateDoctorActivity"
             android:label="@string/privatedoctor"
+            android:theme="@style/AppTheme_ToolBar"/>
+        <activity android:name=".UI.Activity.Drawer.MyMessageActivity"
+            android:label="@string/mymessage"
+            android:theme="@style/AppTheme_ToolBar"/>
+        <activity android:name=".UI.Activity.Drawer.MyMoneyActivity"
+            android:label="@string/mymoney"
+            android:theme="@style/AppTheme_ToolBar"/>
+        <activity android:name=".UI.Activity.Drawer.AboutActivity"
+            android:label="@string/about"
+            android:theme="@style/AppTheme_ToolBar"/>
+        <activity android:name=".UI.Activity.Drawer.FeedBackActivity"
+            android:label="@string/feedback"
             android:theme="@style/AppTheme_ToolBar"/>
     </application>
 

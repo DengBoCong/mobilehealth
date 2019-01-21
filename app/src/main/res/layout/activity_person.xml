@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:fitsSystemWindows="true"
-    tools:context=".Activity.Drawer.PersonActivity">
+    tools:context=".UI.Activity.Drawer.PersonActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/person_toolbar"
         android:layout_width="match_parent"

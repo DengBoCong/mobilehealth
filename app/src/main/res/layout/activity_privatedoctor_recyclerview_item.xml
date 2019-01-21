@@ -10,7 +10,7 @@
         android:id="@+id/privatedoctor_recyclerview_messageItem_leftLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.example.power.mobile_health.Utils.Module.CircleImageView
+        <com.example.power.mobile_health.UI.Utils.Module.CircleImageView
             android:id="@+id/privatedoctor_recyclerview_messageItem_Image"
             android:layout_width="70dp"
             android:layout_height="70dp"

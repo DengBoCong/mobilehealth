@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    tools:context=".Activity.Drawer.PrivateDoctorActivity"
+    tools:context=".UI.Activity.Drawer.PrivateDoctorActivity"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             app:tabSelectedTextColor="@color/colorBlue"
             app:tabTextColor="@color/colorNormalLow"/>
     </android.support.design.widget.AppBarLayout>
-    <com.example.power.mobile_health.Utils.Module.NoSlideViewPager
+    <com.example.power.mobile_health.UI.Utils.Module.NoSlideViewPager
         android:id="@+id/vp_privateDoctorActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

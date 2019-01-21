@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.power.mobile_health.Activity.MainActivity">
+    tools:context=".UI.Activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/main_appBarLayout"
@@ -99,7 +99,7 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
 
-    <com.example.power.mobile_health.Utils.Module.DragFloatActionButton
+    <com.example.power.mobile_health.UI.Utils.Module.DragFloatActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

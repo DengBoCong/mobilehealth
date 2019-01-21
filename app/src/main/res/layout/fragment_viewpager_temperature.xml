@@ -49,7 +49,7 @@
                     android:layout_height="150dp"
                     app:layout_constraintLeft_toLeftOf="parent">
 
-                    <com.example.power.mobile_health.Utils.Module.CircleTextView
+                    <com.example.power.mobile_health.UI.Utils.Module.CircleTextView
                         android:id="@+id/temperature_personTemp"
                         android:layout_width="300px"
                         android:layout_height="300px"
@@ -62,7 +62,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.example.power.mobile_health.Utils.Module.CircleTextView
+                    <com.example.power.mobile_health.UI.Utils.Module.CircleTextView
                         android:id="@+id/temperature_personUnit"
                         android:layout_width="180px"
                         android:layout_height="180px"
@@ -75,7 +75,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
 
-                    <com.example.power.mobile_health.Utils.Module.CircleTextView
+                    <com.example.power.mobile_health.UI.Utils.Module.CircleTextView
                         android:id="@+id/temperature_personTitle"
                         android:layout_width="350px"
                         android:layout_height="100px"
@@ -92,7 +92,7 @@
                     android:layout_width="165dp"
                     android:layout_height="150dp"
                     app:layout_constraintRight_toRightOf="parent">
-                    <com.example.power.mobile_health.Utils.Module.CircleTextView
+                    <com.example.power.mobile_health.UI.Utils.Module.CircleTextView
                         android:id="@+id/temperature_carTemp"
                         android:layout_width="300px"
                         android:layout_height="300px"
@@ -105,7 +105,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.example.power.mobile_health.Utils.Module.CircleTextView
+                    <com.example.power.mobile_health.UI.Utils.Module.CircleTextView
                         android:id="@+id/temperature_carUnit"
                         android:layout_width="180px"
                         android:layout_height="180px"
@@ -118,7 +118,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <com.example.power.mobile_health.Utils.Module.CircleTextView
+                    <com.example.power.mobile_health.UI.Utils.Module.CircleTextView
                         android:id="@+id/temperature_carTitle"
                         android:layout_width="350px"
                         android:layout_height="100px"

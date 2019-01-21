@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.power.mobile_health.Activity.MainActivity"
+    tools:context=".UI.Activity.MainActivity"
     tools:showIn="@layout/app_bar_main">
     <!--在主界面中使用Fragment而不是使用Activity（）这样有利于程序的流畅性和已加载的数据
     不必重新加载，所以需要使用FrameLayout进行布局-->

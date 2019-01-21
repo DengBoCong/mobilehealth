@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.power.mobile_health.Activity.LoginMainActivity"
+    tools:context=".UI.Activity.LoginMainActivity"
     android:background="@color/colorWhile">
     <ImageView
         android:id="@+id/iv_loginMainBack"
